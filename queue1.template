@@ -1,0 +1,53 @@
+/*******************************************************************************
+* Filename:   queue1.template
+* Summary:    This program checks to see if the user input is a palindrome
+*             word for word by checking the queue and stack and making sure
+*             that they are the same word.
+* Author:      Alen Wilson
+* Date:        11/13/2022
+*******************************************************************************/
+     
+
+#include <cassert>  // Provides assert
+
+namespace main_savitch_8B
+{
+    template <class Item>
+    const typename queue<Item>::size_type queue<Item>::CAPACITY;
+    
+    template <class Item>
+    queue<Item>::queue( )
+    {
+        count = 0;
+        first = 0;
+        last = CAPACITY - 1;
+    }
+
+    template <class Item>
+    Item queue<Item>::front( ) const
+    // Library facilities used: cassert
+    {
+        assert(!empty( ));
+	return data[first];
+    }
+
+    template <class Item>
+    void queue<Item>::pop( )
+    // Library facilities used: cassert
+    {
+        assert(!empty( ));
+        first = next_index(first);
+        --count;    
+    }
+    
+    template <class Item>
+    void queue<Item>::push(const Item& entry)
+    // Library facilities used: cassert
+    {
+        assert(size( ) < CAPACITY);
+        last = next_index(last);
+        data[last] = entry;
+        ++count;
+    }
+
+}
